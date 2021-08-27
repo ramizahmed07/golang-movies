@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -13,9 +12,8 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 }
 
 func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
-	param := params.ByName("id")
-	id, err := strconv.ParseInt(param, 10, 64)
-	if err != nil || id < 1 {
+	id, err := app.readIdParam(params)
+	if err != nil {
 		http.NotFound(w, r)
 		return
 	}
