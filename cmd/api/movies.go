@@ -19,9 +19,3 @@ func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request,
 	}
 	fmt.Fprintf(w, "show the details of movie %d\n", id)
 }
-
-func (app *application) healthcheckHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprintln(w, "status: available")
-	fmt.Fprintf(w, "environment: %s\n", app.config.env)
-	fmt.Fprintf(w, "version: %s\n", version)
-}
