@@ -9,6 +9,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+type envelope map[string]interface{}
+
 func (app *application) readIdParam(params httprouter.Params) (int, error) {
 	param := params.ByName("id")
 	id, err := strconv.Atoi(param)
